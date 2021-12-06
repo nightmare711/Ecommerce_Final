@@ -1,5 +1,6 @@
 # MERN Ecommerce
 
+Made by Hoang Tran, Hoang Vu, Quang Danh, Tan Thanh with love <3. 
 ## Description
 
 An ecommerce store built with MERN stack, and utilizes third party API's. This ecommerce store enable three main different flows or implementations:
