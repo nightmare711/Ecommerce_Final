@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const AWS = require('aws-sdk');
 const Mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 
@@ -377,6 +376,7 @@ router.post(
   role.checkRole(role.ROLES.Admin, role.ROLES.Merchant),
   upload.single('image'),
   async (req, res) => {
+    
     try {
       const sku = req.body.sku;
       const name = req.body.name;
@@ -387,7 +387,6 @@ router.post(
       const isActive = req.body.isActive;
       const brand = req.body.brand;
       const image = req.body.image;
-
       if (!sku) {
         return res.status(400).json({ error: 'You must enter sku.' });
       }

@@ -27,6 +27,7 @@ class Review extends React.PureComponent {
       rejectReview,
       deleteReview
     } = this.props;
+    console.log(reviews)
 
     return (
       <div className='review-dashboard'>

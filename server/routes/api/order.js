@@ -58,27 +58,38 @@ router.post('/add', auth, async (req, res) => {
 router.get('/search', auth, async (req, res) => {
   try {
     const { search } = req.query;
-
-    if (!Mongoose.Types.ObjectId.isValid(search)) {
-      return res.status(200).json({
-        orders: []
-      });
-    }
+    // if (!Mongoose.Types.ObjectId.isValid(search)) {
+    //   return res.status(200).json({
+    //     orders: []
+    //   });
+    // }
 
     let ordersDoc = null;
 
     if (req.user.role === role.ROLES.Admin) {
-      ordersDoc = await Order.find({
-        _id: Mongoose.Types.ObjectId(search)
-      }).populate({
-        path: 'cart',
-        populate: {
-          path: 'products.product',
+      if(search === '') {
+        ordersDoc = await Order.find().populate({
+          path: 'cart',
           populate: {
-            path: 'brand'
+            path: 'products.product',
+            populate: {
+              path: 'brand'
+            }
           }
-        }
-      });
+        });
+      } else {
+        ordersDoc = await Order.find({
+          _id: Mongoose.Types.ObjectId(search)
+        }).populate({
+          path: 'cart',
+          populate: {
+            path: 'products.product',
+            populate: {
+              path: 'brand'
+            }
+          }
+        });
+      }
     } else {
       const user = req.user._id;
       ordersDoc = await Order.find({
