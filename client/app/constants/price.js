@@ -1,0 +1,1 @@
+export const WAL_PRICE = 0.01

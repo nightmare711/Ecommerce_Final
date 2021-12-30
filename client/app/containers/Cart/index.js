@@ -16,6 +16,15 @@ import { BagIcon, CloseIcon } from '../../components/Common/Icon';
 import Button from '../../components/Common/Button';
 
 class Cart extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isApprove: false,
+      paymentMethod: 'cod'
+    };
+  }
+  
+
   render() {
     const {
       isCartOpen,
@@ -32,6 +41,13 @@ class Cart extends React.PureComponent {
     return (
       <div className='cart'>
         <div className='cart-header'>
+          <select onChange={(e) => this.setState({
+            ...this.state,
+            paymentMethod: e.target.value
+          })}>
+            <option value='cod'>Cash On Delivery</option>
+            <option value='coin'>WAL(WastedLands)</option>
+          </select>
           {isCartOpen && (
             <Button
               borderless
@@ -60,10 +76,14 @@ class Cart extends React.PureComponent {
           <div className='cart-checkout'>
             <CartSummary cartTotal={cartTotal} />
             <Checkout
+              paymentMethod={this.state.paymentMethod}
+              isApprove={this.state.isApprove}
               handleShopping={handleShopping}
               handleCheckout={handleCheckout}
               placeOrder={placeOrder}
               authenticated={authenticated}
+              cartTotal={cartTotal}
+              onDone={() => this.setState({...this.state, isApprove: true})}
             />
           </div>
         )}

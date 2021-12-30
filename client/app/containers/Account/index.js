@@ -12,17 +12,15 @@ import actions from '../../actions';
 import AccountDetails from '../../components/Manager/AccountDetails';
 import SubPage from '../../components/Manager/SubPage';
 
-class Account extends React.PureComponent {
-  componentDidMount() {
-    // this.props.fetchProfile();
-  }
 
-  render() {
-    const { user, accountChange, updateProfile } = this.props;
+export const Account = (props) => {
+
+    const { user, accountChange, updateProfile } = props;
+    
 
     return (
       <div className='account'>
-        <SubPage title={'Account Details'} isMenuOpen={null}>
+        <SubPage title={'Account Details'} isMenuOpen={null} >
           <AccountDetails
             user={user}
             accountChange={accountChange}
@@ -31,7 +29,6 @@ class Account extends React.PureComponent {
         </SubPage>
       </div>
     );
-  }
 }
 
 const mapStateToProps = state => {

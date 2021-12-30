@@ -85,12 +85,13 @@
 
   .cart-header {
     border-bottom: $border-default;
-    text-align: right;
-    padding-right: 5px;
+    padding: 0px 5px;
     align-items: center;
     justify-content: flex-end;
     height: 50px;
     @include flex();
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .empty-cart {

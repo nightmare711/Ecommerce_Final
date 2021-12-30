@@ -15,12 +15,14 @@ router.post('/add', auth, async (req, res) => {
   try {
     const cart = req.body.cartId;
     const total = req.body.total;
+    const paymentMethod = req.body.paymentMethod;
     const user = req.user._id;
 
     const order = new Order({
       cart,
       user,
-      total
+      total,
+      paymentMethod
     });
 
     const orderDoc = await order.save();
@@ -128,7 +130,8 @@ router.get('/search', auth, async (req, res) => {
           _id: o._id,
           total: parseFloat(Number(o.total.toFixed(2))),
           created: o.created,
-          products: o.cart?.products
+          products: o.cart?.products,
+          paymentMethod: o.paymentMethod
         };
       });
 
@@ -173,7 +176,8 @@ router.get('/', auth, async (req, res) => {
           _id: o._id,
           total: parseFloat(Number(o.total.toFixed(2))),
           created: o.created,
-          products: o.cart?.products
+          products: o.cart?.products,
+          paymentMethod: o.paymentMethod
         };
       });
 

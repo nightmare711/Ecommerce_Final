@@ -12,6 +12,7 @@ import { formatDate } from '../../../helpers/date';
 
 const OrderList = props => {
   const { orders } = props;
+  console.log('order',orders)
 
   const renderFirstItem = order => {
     if (order.products) {
@@ -63,6 +64,10 @@ const OrderList = props => {
                   <div className='mb-1'>
                     <span>Order Total</span>
                     <span className='order-label'>{` $${order?.totalWithTax}`}</span>
+                  </div>
+                  <div className='mb-1'>
+                    <span>Payment method</span>
+                    <span className='order-label' style={{textTransform: 'uppercase'}}>{` ${order?.paymentMethod }`}</span>
                   </div>
                 </div>
               </div>

@@ -15,11 +15,16 @@ const OrderSchema = new Schema({
     type: Number,
     default: 0
   },
+  paymentMethod: {
+    type: String, 
+    required:true
+  },
   updated: Date,
   created: {
     type: Date,
     default: Date.now
-  }
+  },
+  
 });
 
 module.exports = Mongoose.model('Order', OrderSchema);

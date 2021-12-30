@@ -11,10 +11,15 @@ import { Row, Col } from 'reactstrap';
 import UserRole from '../UserRole';
 import Input from '../../Common/Input';
 import Button from '../../Common/Button';
+import { useCheckConnected, useConnectWallet } from '../../../utils/hooks/useWalletProviders'
+import { useGetTotalInFund, useWithdraw } from '../../../queries/useFund.queries'
 
 const AccountDetails = props => {
   const { user, accountChange, updateProfile } = props;
-
+  const isConnected = useCheckConnected()
+  const { data: totalInFund } = useGetTotalInFund()
+  const onWithdraw = useWithdraw()
+  const onConnect = useConnectWallet()
   const handleSubmit = event => {
     event.preventDefault();
     updateProfile();
@@ -34,7 +39,9 @@ const AccountDetails = props => {
             )}
           </p>
           <UserRole user={user} />
+          
         </div>
+        {isConnected ? <Button onClick={() => onWithdraw()} type='submit' variant='secondary' text={`Withdraw ${totalInFund || 0}`} /> : <Button onClick={() => onConnect()} type='submit' variant='secondary' text='Connect' />}
       </div>
       <form onSubmit={handleSubmit}>
         <Row>

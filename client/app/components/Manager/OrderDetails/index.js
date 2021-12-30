@@ -16,7 +16,6 @@ import Button from '../../Common/Button';
 import PaypalAPI from '../../Common/PayPalButton';
 const OrderDetails = props => {
   const { order, user, cancelOrder, updateOrderItemStatus, onBack } = props;
-  const [checkout, setCheckout] = useState(false);
   return (
     <div className='order-details'>
       <Row>
@@ -35,17 +34,6 @@ const OrderDetails = props => {
         <Col xs='12' lg='4' className='mt-5 mt-lg-0'>
       
           <OrderSummary order={order} />
-          <div class= "PaypalButton">
-            {checkout? <PaypalAPI value = {order.totalWithTax}/> : 
-          <Button
-            variant='primary'
-            text='Payment'
-            
-            onClick={() => setCheckout(true)}
-          />}
-  
-          </div>
-          
       
         </Col>
       
