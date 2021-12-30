@@ -67,10 +67,10 @@ const ReviewList = props => {
             <div className='d-flex flex-column flex-lg-row mx-0 mb-3 align-items-start justify-content-between'>
               <div className='w-100 mb-3 mb-lg-0 review-product-box'>
                 <Link
-                  to={`/product/${review.product.slug}`}
+                  to={`/product/${review.product?.slug}`}
                   className='default-link'
                 >
-                  {review?.product.name}
+                  {review?.product?.name}
                 </Link>
                 <ReactStars
                   classNames='mt-1 mt-lg-2'

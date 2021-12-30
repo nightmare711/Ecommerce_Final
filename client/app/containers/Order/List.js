@@ -44,6 +44,7 @@ class List extends React.PureComponent {
   render() {
     const { history, user, orders, isLoading, searchOrders } = this.props;
     const { search } = this.state;
+    console.log('orders', searchOrders)
 
     const filteredOrders = search
       ? orders.filter(o => o._id.includes(search))

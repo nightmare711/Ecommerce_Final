@@ -58,6 +58,7 @@ router.post('/add', auth, async (req, res) => {
 router.get('/search', auth, async (req, res) => {
   try {
     const { search } = req.query;
+    console.log('search', search)
     // if (!Mongoose.Types.ObjectId.isValid(search)) {
     //   return res.status(200).json({
     //     orders: []
@@ -91,19 +92,32 @@ router.get('/search', auth, async (req, res) => {
         });
       }
     } else {
-      const user = req.user._id;
-      ordersDoc = await Order.find({
-        _id: Mongoose.Types.ObjectId(search),
-        user
-      }).populate({
-        path: 'cart',
-        populate: {
-          path: 'products.product',
+      if(search === '') {
+        const user = req.user._id;
+        ordersDoc = await Order.find().populate({
+          path: 'cart',
           populate: {
-            path: 'brand'
+            path: 'products.product',
+            populate: {
+              path: 'brand'
+            }
           }
-        }
-      });
+        });
+      } else {
+        const user = req.user._id;
+        ordersDoc = await Order.find({
+          _id: Mongoose.Types.ObjectId(search),
+          user
+        }).populate({
+          path: 'cart',
+          populate: {
+            path: 'products.product',
+            populate: {
+              path: 'brand'
+            }
+          }
+        });
+      }
     }
 
     ordersDoc = ordersDoc.filter(order => order.cart);
@@ -134,6 +148,7 @@ router.get('/search', auth, async (req, res) => {
     });
   }
 });
+
 
 // fetch orders api
 router.get('/', auth, async (req, res) => {
