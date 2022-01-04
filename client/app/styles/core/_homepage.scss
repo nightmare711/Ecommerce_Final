@@ -1,2 +1,16 @@
-// .homepage {
-// }
+.homepage {
+  .News {
+    margin-top: 30px;
+    .list-news {
+      display: flex;
+      .news-box {
+        margin: 20px;
+        img {
+          width: 100%;
+          height: 220px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
