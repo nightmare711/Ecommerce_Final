@@ -32,6 +32,11 @@
   },
   "homepage": "",
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.7",
+    "@mui/styled-engine-sc": "^5.1.0",
     "autosuggest-highlight": "^3.1.1",
     "aws-sdk": "^2.799.0",
     "axios": "^0.21.1",
@@ -80,6 +85,7 @@
     "simple-line-icons": "^2.4.1",
     "socket.io": "^4.2.0",
     "socket.io-client": "^4.2.0",
+    "styled-components": "^5.3.3",
     "validatorjs": "^3.18.1",
     "web3": "^1.6.1"
   },

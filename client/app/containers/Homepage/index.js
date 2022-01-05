@@ -51,19 +51,19 @@ class Homepage extends React.PureComponent {
         <div className='News'>
             <h1 className='logo'>Lastest News</h1>
             <div className='list-news'>
-                <a href='/blog/1' className='news-box'>
+                <a href='https://www.investopedia.com/tech/what-you-must-know-investing-crypto/' className='news-box'>
                   <img src='https://images.pexels.com/photos/1447418/pexels-photo-1447418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'></img>
                   <h2>A few things to note</h2>
                   <div>In this series of articles, ProX will guide you to play Bitcoin for beginners, as well as how to play Bitcoin from A to Z in the most detail</div>
                 </a>
-                <a href='/blog/2' className='news-box'>
+                <a href='https://money.cnn.com/infographic/technology/what-is-bitcoin/index.html' className='news-box'>
                 <img src='https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'></img>
                 <h2>Bitcoin Overview</h2>
                 <div>In this article, we will learn briefly about Bitcoin and to have a solid knowledge base about Bitcoin</div>
               </a>
-              <a href='/blog/1' className='news-box'>
+              <a href='https://www.investopedia.com/articles/investing/082914/basics-buying-and-investing-bitcoin.asp' className='news-box'>
                 <img src='https://images.pexels.com/photos/8358115/pexels-photo-8358115.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'></img>
-                <h2>9 Ways to Invest Bitcoin</h2>
+                <h2>How to Invest Bitcoin</h2>
                 <div>Ok, after understanding what Bitcoin is, its time for you to ask the question "I want to play Bitcoin, how should I start?"</div>
               </a>
             </div>             
