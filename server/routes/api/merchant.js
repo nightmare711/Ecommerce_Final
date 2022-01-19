@@ -24,6 +24,7 @@ router.post('/seller-request', async (req, res) => {
         .status(400)
         .json({ error: 'You must enter your name and email.' });
     }
+    
 
     if (!business) {
       return res
@@ -37,12 +38,19 @@ router.post('/seller-request', async (req, res) => {
         .json({ error: 'You must enter a phone number and an email address.' });
     }
 
+    const existingUser = await User.findOne({ email });
+
     const existingMerchant = await Merchant.findOne({ email });
 
     if (existingMerchant) {
       return res
         .status(400)
         .json({ error: 'That email address is already in use.' });
+    }
+    if(!existingUser) {
+      return res.status(400).json({
+        error:'Register email to become own member first'
+      })
     }
 
     const merchant = new Merchant({
@@ -251,31 +259,13 @@ const createMerchantUser = async (email, name, merchant, host) => {
 
     await createMerchantBrand(merchantDoc);
 
-    await mailgun.sendEmail(email, 'merchant-welcome', null, name);
-
     return await User.findOneAndUpdate(query, update, {
       new: true
     });
   } else {
-    const buffer = await crypto.randomBytes(48);
-    const resetToken = buffer.toString('hex');
-    const resetPasswordToken = resetToken;
-
-    const user = new User({
-      email,
-      firstName,
-      lastName,
-      resetPasswordToken,
-      merchant,
-      role: role.ROLES.Merchant
+    return res.status(400).json({
+      error: 'Register email first.'
     });
-
-    await mailgun.sendEmail(email, 'merchant-signup', host, {
-      resetToken,
-      email
-    });
-
-    return await user.save();
   }
 };
 

@@ -24,6 +24,7 @@ const AccountDetails = props => {
     event.preventDefault();
     updateProfile();
   };
+  console.log('user', user)
 
   return (
     <div className='account-details'>
@@ -41,7 +42,7 @@ const AccountDetails = props => {
           <UserRole user={user} />
           
         </div>
-        {isConnected ? <Button onClick={() => onWithdraw()} type='submit' variant='secondary' text={`Withdraw ${totalInFund || 0}`} /> : <Button onClick={() => onConnect()} type='submit' variant='secondary' text='Connect' />}
+        {user?.role === 'ROLE_ADMIN' ? isConnected ? <Button onClick={() => onWithdraw()} type='submit' variant='secondary' text={`Withdraw ${totalInFund || 0}`} /> : <Button onClick={() => onConnect()} type='submit' variant='secondary' text='Connect' /> : null}
       </div>
       <form onSubmit={handleSubmit}>
         <Row>
